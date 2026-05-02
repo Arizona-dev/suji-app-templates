@@ -62,22 +62,29 @@ form_schema:
       - { value: whatsapp, label: WhatsApp Cloud API }
       - { value: slack, label: Slack }
 
+  # Per-channel tokens — `default: ""` lets unselected channels render the
+  # compose with an empty string instead of leaving `${VAR}` unresolved at
+  # deploy time. OpenClaw treats empty channel tokens as "channel disabled".
   - key: TELEGRAM_BOT_TOKEN
     type: secret
     label: Telegram bot token
     description: From @BotFather. Required if Telegram is selected.
+    default: ""
 
   - key: DISCORD_BOT_TOKEN
     type: secret
     label: Discord bot token
     description: From the Discord developer portal. Required if Discord is selected.
+    default: ""
 
   - key: WHATSAPP_TOKEN
     type: secret
     label: WhatsApp Cloud API token
     description: From Meta Business. Required if WhatsApp is selected.
+    default: ""
 
   - key: SLACK_BOT_TOKEN
     type: secret
     label: Slack bot token
     description: From Slack app config. Required if Slack is selected.
+    default: ""

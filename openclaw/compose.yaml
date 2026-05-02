@@ -3,14 +3,16 @@ services:
     image: ghcr.io/arizona-dev/openclaw:1.0.0
     restart: unless-stopped
     environment:
-      AI_PROVIDER: ${AI_PROVIDER}
-      AI_API_KEY: ${AI_API_KEY}
-      OPENCLAW_GATEWAY_PASSWORD: ${OPENCLAW_GATEWAY_PASSWORD}
-      CHANNELS: ${CHANNELS}
-      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
-      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
-      WHATSAPP_TOKEN: ${WHATSAPP_TOKEN}
-      SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN}
+      # All env values are double-quoted so unselected-channel tokens render
+      # as the YAML string "" (instead of bare empty, which YAML parses as null).
+      AI_PROVIDER: "${AI_PROVIDER}"
+      AI_API_KEY: "${AI_API_KEY}"
+      OPENCLAW_GATEWAY_PASSWORD: "${OPENCLAW_GATEWAY_PASSWORD}"
+      CHANNELS: "${CHANNELS}"
+      TELEGRAM_BOT_TOKEN: "${TELEGRAM_BOT_TOKEN}"
+      DISCORD_BOT_TOKEN: "${DISCORD_BOT_TOKEN}"
+      WHATSAPP_TOKEN: "${WHATSAPP_TOKEN}"
+      SLACK_BOT_TOKEN: "${SLACK_BOT_TOKEN}"
     ports:
       - "18789"
     volumes:
