@@ -1,9 +1,9 @@
 slug: openclaw
-tier: suji
+
 name: OpenClaw
 description: Multi-channel messaging bot with AI-powered responses (Telegram, Discord, WhatsApp, Slack).
 homepage_url: https://github.com/Arizona-dev/openclaw
-icon_url: https://raw.githubusercontent.com/Arizona-dev/suji-app-templates/main/suji/openclaw/icon.svg
+icon_url: https://raw.githubusercontent.com/Arizona-dev/suji-app-templates/main/openclaw/icon.svg
 version: 1.0.0
 release_notes: First marketplace release.
 categories: [communication, automation]
@@ -81,33 +81,3 @@ form_schema:
     type: secret
     label: Slack bot token
     description: From Slack app config. Required if Slack is selected.
-
-compose: |
-  services:
-    openclaw:
-      image: ghcr.io/arizona-dev/openclaw:1.0.0
-      restart: unless-stopped
-      environment:
-        AI_PROVIDER: ${AI_PROVIDER}
-        AI_API_KEY: ${AI_API_KEY}
-        OPENCLAW_GATEWAY_PASSWORD: ${OPENCLAW_GATEWAY_PASSWORD}
-        CHANNELS: ${CHANNELS}
-        TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
-        DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
-        WHATSAPP_TOKEN: ${WHATSAPP_TOKEN}
-        SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN}
-      ports:
-        - "18789"
-      volumes:
-        - openclaw-data:/data
-      networks: [suji-net]
-      deploy:
-        resources:
-          limits:
-            memory: 1024M
-            cpus: "1.0"
-  volumes:
-    openclaw-data:
-  networks:
-    suji-net:
-      external: true
